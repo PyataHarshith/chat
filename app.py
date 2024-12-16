@@ -13,9 +13,11 @@ Username = st.text_input("Username")
 
 if st.button("Enter Room"):
     data = {
-        "name" : Room_Name
+        "room_name" : Room_Name,
+        "username" : Username
+        
     }
-    response = requests.post("http://127.0.0.1:8000/checkview")
+    response = requests.post("http://127.0.0.1:8000/checkview",json=data )
 
     if response.status_code == 200:
         st.success("Succesfully Entered room")
