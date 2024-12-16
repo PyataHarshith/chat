@@ -42,7 +42,7 @@ def load_html_file(file_path):
 # Function to handle HTML button clicks
 def handle_html_buttons():
     # Check for button clicks in query parameters
-    query_params = st.experimental_get_query_params()
+    query_params = st.query_params()
     if "navigate" in query_params:
         if query_params["navigate"][0] == "Room":
             st.session_state.current_page = "Room"
@@ -58,12 +58,6 @@ if st.session_state.current_page == "Home":
     html_file_path_home = os.path.join(os.getcwd(), 'home.html')
     html_content_home = load_html_file(html_file_path_home)
     
-    # Add buttons to the HTML file
-    html_content_home += """
-    <div>
-        <button onclick="window.location.href='/?navigate=Room'">Go to Room Page</button>
-    </div>
-    """
     st.components.v1.html(html_content_home, height=500)
 
 elif st.session_state.current_page == "Room":
@@ -73,10 +67,4 @@ elif st.session_state.current_page == "Room":
     html_file_path_room = os.path.join(os.getcwd(), 'room.html')
     html_content_room = load_html_file(html_file_path_room)
     
-    # Add a back button
-    html_content_room += """
-    <div>
-        <button onclick="window.location.href='/?navigate=Home'">Back to Home Page</button>
-    </div>
-    """
     st.components.v1.html(html_content_room, height=500)
