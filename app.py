@@ -17,7 +17,7 @@ def load_html_file(file_path):
 # Function to handle HTML button clicks
 def handle_html_buttons():
     # Check for button clicks in query parameters
-    query_params = st.query_params()
+    query_params = st.experimental_get_query_params()
     if "navigate" in query_params:
         if query_params["navigate"][0] == "Room":
             st.session_state.current_page = "Room"
